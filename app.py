@@ -27,6 +27,26 @@ st.markdown("""
   --r: 12px;
 }
 
+/* ── NO TEXT CURSOR ── */
+.nav, .hero, .section, .site-footer,
+.card, .card-title, .card-body, .card-icon,
+.team-card, .team-name, .team-role, .team-desc,
+.outcome-item, .outcome-title, .outcome-body, .outcome-num,
+.risk-card, .risk-title, .risk-body, .risk-num, .risk-mitigation,
+.swot-card, .swot-label, .swot-list, .swot-list li,
+.section-title, .section-eyebrow, .section-body,
+.hero-title, .hero-desc, .hero-subtitle-tag, .hero-eyebrow,
+.hero-stat, .hero-stat-num, .hero-stat-label,
+.highlight-box, .highlight-box-label, .highlight-box-text,
+.spec-item, .spec-text, .spec-icon,
+.market-stat-card, .market-stat-num, .market-stat-label,
+.footer-pill, .footer-copy, .site-footer-title, .site-footer-sub,
+.nav-logo, .nav-tag {
+  cursor: default !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
 html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(--bg) !important; color: var(--text); }
 .stApp {
   background:
@@ -172,7 +192,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   border-radius: var(--r); padding: 24px 28px;
   transition: border-color 0.3s;
 }
-.outcome-item:hover { border-color: var(--green-dim); border-color: rgba(93,184,99,0.3); }
+.outcome-item:hover { border-color: rgba(93,184,99,0.3); }
 .outcome-num {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem; font-weight: 900;
