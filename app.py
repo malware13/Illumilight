@@ -36,7 +36,7 @@ st.markdown("""
   --text-3: #4a4a38;
   --border: rgba(255,255,255,0.06);
   --r: 12px;
-  --nav-height: 72px;
+  --nav-height: 120px;
 }
 
 * { box-sizing: border-box; }
@@ -78,7 +78,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   background: rgba(13,15,10,0.92);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
-    height: 120px;
+  height: var(--nav-height);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px;
 }
@@ -106,6 +106,18 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   margin-top: calc(-1 * var(--nav-height));
   visibility: hidden;
   pointer-events: none;
+}
+/* Force Streamlit to allow sticky nav */
+.stApp > div:first-child {
+  overflow: visible !important;
+}
+
+[data-testid="stAppViewContainer"] {
+  overflow: visible !important;
+}
+
+[data-testid="stAppViewBlockContainer"] {
+  overflow: visible !important;
 }
 
 /* ── HERO ── */
