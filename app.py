@@ -74,7 +74,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 
 /* ── NAV ── */
 .nav {
-  position: sticky; top: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
   background: rgba(13,15,10,0.92);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
@@ -82,6 +82,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px;
 }
+.nav-spacer { height: var(--nav-height); display: block; }
 .nav-left { display: flex; align-items: center; height: var(--nav-height); flex-shrink: 0; }
 .nav-logo {
   font-family: 'Playfair Display', serif;
@@ -106,18 +107,6 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   margin-top: calc(-1 * var(--nav-height));
   visibility: hidden;
   pointer-events: none;
-}
-/* Force Streamlit to allow sticky nav */
-.stApp > div:first-child {
-  overflow: visible !important;
-}
-
-[data-testid="stAppViewContainer"] {
-  overflow: visible !important;
-}
-
-[data-testid="stAppViewBlockContainer"] {
-  overflow: visible !important;
 }
 
 /* ── HERO ── */
@@ -406,6 +395,7 @@ st.markdown(f"""
     <a class="nav-link" href="#risks">Risks</a>
   </div>
 </div>
+<div class="nav-spacer"></div>
 """, unsafe_allow_html=True)
 
 
