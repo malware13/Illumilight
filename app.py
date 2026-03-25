@@ -1,11 +1,23 @@
 import streamlit as st
+import base64
 
 st.set_page_config(
     page_title="ILLUMILIGHT — Social Enterprise",
-    page_icon="assets/logo.ico",  # ← path to your icon file
+    page_icon="assets/logo.ico",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+# ── Load nav logo as base64 ──
+def get_image_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+try:
+    nav_logo_b64 = get_image_base64("assets/nav.jpg")
+    nav_logo_html = f'<img src="data:image/jpeg;base64,{nav_logo_b64}" style="height:40px; vertical-align:middle;" />'
+except FileNotFoundError:
+    nav_logo_html = '<div class="nav-logo">ILLUMI<span>LIGHT</span></div>'
 
 st.markdown("""
 <style>
@@ -336,9 +348,11 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 
 
 # ── NAV ──
-st.markdown("""
+st.markdown(f"""
 <div class="nav">
-  <div class="nav-logo">ILLUMI<span>LIGHT</span></div>
+  <div class="nav-logo">
+    {nav_logo_html}
+  </div>
   <div class="nav-tag">Social Enterprise Business Plan · SY 2025–2026</div>
 </div>
 """, unsafe_allow_html=True)
