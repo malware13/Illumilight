@@ -76,7 +76,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 0 48px;
-  height: 64px;
+  height: 120px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
