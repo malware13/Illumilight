@@ -14,7 +14,7 @@ def get_image_base64(path):
 
 try:
     nav_logo_b64 = get_image_base64("assets/nav.png")
-    nav_logo_html = f'<img src="data:image/png;base64,{nav_logo_b64}" style="height:56px; width:auto; display:block; object-fit:contain;" />'
+    nav_logo_html = f'<img src="data:image/png;base64,{nav_logo_b64}" style="height:90px; width:auto; display:block; object-fit:contain;" />'
 except FileNotFoundError:
     nav_logo_html = '<div class="nav-logo">ILLUMI<span>LIGHT</span></div>'
 
@@ -81,7 +81,6 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   padding: 0 40px;
   height: var(--nav-height);
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
 }
 .nav-left { display: flex; align-items: center; height: var(--nav-height); flex-shrink: 0; }
 .nav-logo {
