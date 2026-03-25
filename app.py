@@ -14,7 +14,7 @@ def get_image_base64(path):
         return base64.b64encode(f.read()).decode()
 
 try:
-    nav_logo_b64 = get_image_base64("assets/nav.jpg")
+    nav_logo_b64 = get_image_base64("assets/nav.png")
     nav_logo_html = f'<img src="data:image/jpeg;base64,{nav_logo_b64}" style="height:40px; vertical-align:middle;" />'
 except FileNotFoundError:
     nav_logo_html = '<div class="nav-logo">ILLUMI<span>LIGHT</span></div>'
