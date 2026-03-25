@@ -92,6 +92,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 .nav-logo span { color: var(--text); font-weight: 700; }
 .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
 .nav-link {
+text-decoration: none !important;
   font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--text-3);
   text-decoration: none; padding: 6px 10px; border-radius: 6px;
