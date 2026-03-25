@@ -78,7 +78,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   background: rgba(13,15,10,0.92);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
-  height: var(--nav-height);
+    height: 120px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-left { display: flex; align-items: center; height: var(--nav-height); flex-shrink: 0; }
