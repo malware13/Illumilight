@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 
 st.set_page_config(
-    page_title="IllumiLight",
+    page_title="ILLUMILIGHT — Social Enterprise",
     page_icon="assets/logo.ico",
     layout="wide",
     initial_sidebar_state="collapsed"
