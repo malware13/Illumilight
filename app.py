@@ -78,7 +78,6 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   background: rgba(13,15,10,0.92);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
-  padding: 0 40px;
   height: var(--nav-height);
   display: flex; align-items: center; justify-content: space-between;
 }
