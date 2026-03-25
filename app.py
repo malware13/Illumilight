@@ -42,7 +42,7 @@ st.markdown("""
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-.nav, .hero, .section, .site-footer,
+.hero, .section, .site-footer,
 .card, .card-title, .card-body, .card-icon,
 .team-card, .team-name, .team-role, .team-desc,
 .outcome-item, .outcome-title, .outcome-body, .outcome-num,
@@ -72,32 +72,10 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 0 !important; max-width: 100% !important; }
 
-/* ── NAV ── */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(13,15,10,0.92);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
-  height: var(--nav-height);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px;
+/* Push page content below the fixed nav */
+section[data-testid="stMain"] > div:first-child {
+  padding-top: 120px !important;
 }
-.nav-left { display: flex; align-items: center; height: var(--nav-height); flex-shrink: 0; }
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem; font-weight: 900;
-  color: var(--gold); letter-spacing: 0.04em;
-}
-.nav-logo span { color: var(--text); font-weight: 700; }
-.nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
-.nav-link {
-  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--text-3);
-  text-decoration: none; padding: 6px 10px; border-radius: 6px;
-  transition: color 0.2s, background 0.2s;
-  cursor: pointer !important;
-}
-.nav-link:hover { color: var(--gold); background: var(--gold-dim); }
 
 /* ── SECTION ANCHORS ── */
 .section-anchor {
@@ -106,18 +84,6 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   margin-top: calc(-1 * var(--nav-height));
   visibility: hidden;
   pointer-events: none;
-}
-/* Force Streamlit to allow sticky nav */
-.stApp > div:first-child {
-  overflow: visible !important;
-}
-
-[data-testid="stAppViewContainer"] {
-  overflow: visible !important;
-}
-
-[data-testid="stAppViewBlockContainer"] {
-  overflow: visible !important;
 }
 
 /* ── HERO ── */
@@ -390,22 +356,67 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 """, unsafe_allow_html=True)
 
 
-# ── NAV ──
+# ── NAV — injected directly into document.body via JS so it escapes Streamlit's scroll container ──
 st.markdown(f"""
-<div class="nav">
-  <div class="nav-left">{nav_logo_html}</div>
-  <div class="nav-links">
-    <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="#problem">Problem</a>
-    <a class="nav-link" href="#solution">Solution</a>
-    <a class="nav-link" href="#impact">Impact</a>
-    <a class="nav-link" href="#market">Market</a>
-    <a class="nav-link" href="#sustainability">Sustainability</a>
-    <a class="nav-link" href="#team">Team</a>
-    <a class="nav-link" href="#financials">Financials</a>
-    <a class="nav-link" href="#risks">Risks</a>
-  </div>
-</div>
+<script>
+(function() {{
+  if (document.getElementById('illumilight-nav')) return;
+  var nav = document.createElement('div');
+  nav.id = 'illumilight-nav';
+  nav.style.cssText = [
+    'position:fixed','top:0','left:0','right:0','z-index:99999',
+    'height:120px',
+    'background:rgba(13,15,10,0.92)',
+    'backdrop-filter:blur(24px)',
+    '-webkit-backdrop-filter:blur(24px)',
+    'border-bottom:1px solid rgba(255,255,255,0.06)',
+    'display:flex','align-items:center','justify-content:space-between',
+    'padding:0 40px',
+    'font-family:Outfit,sans-serif'
+  ].join(';');
+
+  nav.innerHTML = `
+    <div style="display:flex;align-items:center;height:120px;flex-shrink:0;">
+      {nav_logo_html}
+    </div>
+    <div style="display:flex;align-items:center;gap:2px;flex-wrap:wrap;" id="illumilight-links"></div>
+  `;
+
+  var links = [
+    ['About','about'],['Problem','problem'],['Solution','solution'],
+    ['Impact','impact'],['Market','market'],['Sustainability','sustainability'],
+    ['Team','team'],['Financials','financials'],['Risks','risks']
+  ];
+
+  var linksDiv = nav.querySelector('#illumilight-links');
+  links.forEach(function(l) {{
+    var a = document.createElement('a');
+    a.textContent = l[0];
+    a.setAttribute('data-target', l[1]);
+    a.style.cssText = [
+      'font-size:0.68rem','font-weight:600','letter-spacing:0.08em',
+      'text-transform:uppercase','color:#4a4a38',
+      'text-decoration:none','padding:6px 10px','border-radius:6px',
+      'cursor:pointer','transition:color 0.2s,background 0.2s'
+    ].join(';');
+    a.addEventListener('mouseenter', function() {{
+      this.style.color = '#e8b84b';
+      this.style.background = 'rgba(232,184,75,0.10)';
+    }});
+    a.addEventListener('mouseleave', function() {{
+      this.style.color = '#4a4a38';
+      this.style.background = 'transparent';
+    }});
+    a.addEventListener('click', function() {{
+      var target = document.getElementById(this.getAttribute('data-target'));
+      if (target) target.scrollIntoView({{behavior:'smooth'}});
+    }});
+    linksDiv.appendChild(a);
+  }});
+
+  document.body.appendChild(nav);
+}})();
+</script>
 """, unsafe_allow_html=True)
 
 
