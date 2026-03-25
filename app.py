@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="ILLUMILIGHT — Social Enterprise",
-    page_icon="💡",
+    page_icon="assets/logo.ico",  # ← path to your icon file
     layout="wide",
     initial_sidebar_state="collapsed"
 )
