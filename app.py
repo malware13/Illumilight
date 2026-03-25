@@ -71,7 +71,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
 
 /* ── NAV ── */
 .nav {
-  position: sticky; top: 0; z-index: 0;
+  position: sticky; top: 0; z-index: 100;
   background: rgba(13,15,10,0.85);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
