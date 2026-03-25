@@ -80,6 +80,7 @@ html, body, [class*="css"] { font-family: 'Outfit', sans-serif; background: var(
   border-bottom: 1px solid var(--border);
     height: 120px;
   display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
 }
 .nav-left { display: flex; align-items: center; height: var(--nav-height); flex-shrink: 0; }
 .nav-logo {
