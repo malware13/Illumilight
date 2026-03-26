@@ -3,7 +3,7 @@ import base64
 
 st.set_page_config(
     page_title="IllumiLight",
-    page_icon="assets/logo.ico",
+    page_icon="assets/logo.png",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
